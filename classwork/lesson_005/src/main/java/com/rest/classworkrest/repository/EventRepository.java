@@ -1,42 +1,65 @@
-package spring.repository;
-
-import org.springframework.stereotype.Repository;
-import spring.domain.Event;
+package com.rest.classworkrest.repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.stereotype.Repository;
+import com.rest.classworkrest.domain.Event;
 
 @Repository
 public class EventRepository {
-    static List<Event> events = new ArrayList<>(Arrays.asList(
-        new Event("Opera", "London", 35.00),
-        new Event("Violin concert", "Prague", 35.00),
-        new Event("Jazz concert", "Berlin", 35.00),
-        new Event("Art exhibition", "London", 40.00),
-        new Event("Royal Variety Show", "Paris", 40.00)
-    ));
 
-    public List<Event> findAll() {
-        return events;
-    }
+  static List<Event> events = new ArrayList<>(Arrays.asList(
+      new Event("Opera", "London"),
+      new Event("Violin concert", "NY"),
+      new Event("Jazz concert", "Berlin"),
+      new Event("Art exhibition", "London"),
+      new Event("Royal Variety Show", "Paris")
+  ));
 
-    public void save(Event event) {
-        events.add(event);
-    }
+  public List<Event> findAll() {
+    return events;
+  }
 
-    public void save(int id, Event event) {
-        Event updEvent = events.get(id);
+//  public Event save(Event event) {
+//    Event newEvent = new Event(event.getName(), event.getCity());
+//    events.add(newEvent);
+//    return newEvent;
+//  }
+
+  public Event save(Event event) {
+    if (event.getId() == null) {
+      // add new Event
+      Event newEvent = new Event(event.getName(), event.getCity());
+      events.add(newEvent);
+      return newEvent;
+    } else {
+      // update Event by id
+      Event updEvent = findById(event.getId());
+      if (updEvent != null) {
         updEvent.setName(event.getName());
         updEvent.setCity(event.getCity());
-        updEvent.setPrice(event.getPrice());
+        return updEvent;
+      }
+      return null;
     }
+  }
 
-    public Event findById(int id) {
-        return events.get(id);
+  public Event findById(int id) {
+    for (Event event : events) {
+      if (event.getId() == id) {
+        return event;
+      }
     }
+    return null;
+  }
 
-    public void remove(int id) {
-        events.remove(id);
+  public Event remove(int id) {
+    Event event = findById(id);
+    if (event != null) {
+      events.remove(event);
+      return event;
     }
+    return null;
+  }
 }

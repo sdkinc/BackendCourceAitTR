@@ -1,11 +1,10 @@
-package spring.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import spring.domain.Event;
-import spring.repository.EventRepository;
+package com.rest.classworkrest.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.rest.classworkrest.domain.Event;
+import com.rest.classworkrest.repository.EventRepository;
 
 @Service
 public class EventService {
@@ -17,19 +16,19 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    public void add(Event event) {
-        eventRepository.save(event);
+    public Event add(Event event) {
+        return eventRepository.save(event);
     }
 
     public Event findById(Integer id) {
         return eventRepository.findById(id);
     }
 
-    public void update(Integer id, Event event) {
-        eventRepository.save(id, event);
+    public Event update(Event event) {
+        return eventRepository.save(event);
     }
 
-    public void remove(Integer id) {
-        eventRepository.remove(id);
+    public Event delete(Integer id) {
+        return eventRepository.remove(id);
     }
 }

@@ -1,40 +1,38 @@
-package spring.domain;
+package com.rest.classworkrest.domain;
 
 public class Event {
-    private String name;
-    private String city;
-    private double price;
 
-    public Event() {
-    }
+  private static int counter = 0;
+  private Integer id;
+  private String name;
+  private String city;
 
-    public Event(String name, String city, double price) {
-        this.name = name;
-        this.city = city;
-        this.price = price;
-    }
+  public Event() {
+  }
 
-    public double getPrice() {
-        return price;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+  public Event(String name, String city) {
+    this.id = ++counter;
+    this.name = name;
+    this.city = city;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getCity() {
-        return city;
-    }
+  public String getCity() {
+    return city;
+  }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+  public void setCity(String city) {
+    this.city = city;
+  }
 }
