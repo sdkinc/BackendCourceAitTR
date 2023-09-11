@@ -1,7 +1,7 @@
-package lesson006.spring;
+package hello.sql.spring;
 
 import javax.sql.DataSource;
-import lesson006.UserDAO;
+import hello.sql.UserDAO;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

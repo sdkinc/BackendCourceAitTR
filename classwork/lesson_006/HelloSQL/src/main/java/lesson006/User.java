@@ -14,6 +14,18 @@ public class User {
         '}';
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
   public User(Integer id, String name, String password) {
     this.id = id;
     this.name = name;

@@ -1,4 +1,4 @@
-package lesson006;
+package hello.sql;
 
 import java.util.ArrayList;
 import javax.sql.DataSource;

@@ -1,4 +1,4 @@
-package lesson006;
+package hello.sql;
 
 public class User {
   private Integer id;

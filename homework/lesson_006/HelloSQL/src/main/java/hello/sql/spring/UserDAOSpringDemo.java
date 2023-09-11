@@ -1,7 +1,7 @@
-package lesson006.spring;
+package hello.sql.spring;
 
-import lesson006.User;
-import lesson006.UserDAO;
+import hello.sql.User;
+import hello.sql.UserDAO;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

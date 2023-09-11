@@ -1,4 +1,4 @@
-package lesson006;
+package hello.sql;
 
 import javax.sql.DataSource;
 import org.postgresql.ds.PGSimpleDataSource;
