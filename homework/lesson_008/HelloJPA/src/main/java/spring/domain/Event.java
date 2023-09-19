@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,15 +16,16 @@ public class Event {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String name;
-
-  private Integer city_id;
+  @ManyToOne
+  @JoinColumn(name = "city_id")
+  private City city;
 
   public Event() {
   }
 
-  public Event(String name, Integer city_id) {
+  public Event(String name, City city) {
     this.name = name;
-    this.city_id = city_id;
+    this.city = city;
   }
 
   public Integer getId() {
@@ -37,12 +40,12 @@ public class Event {
     this.name = name;
   }
 
-  public Integer getCity() {
-    return city_id;
+  public City getCity() {
+    return city;
   }
 
-  public void setCity(Integer city_id) {
-    this.city_id = city_id;
+  public void setCity(City city) {
+    this.city = city;
   }
 
   public void setId(Integer id) {
