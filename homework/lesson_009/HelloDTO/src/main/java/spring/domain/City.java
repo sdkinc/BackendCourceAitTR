@@ -19,7 +19,7 @@ public class City {
   private String name;
   private String comment;
   @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
-  List<Event> products;
+  List<Event> events;
 
 
   public String getComment() {
@@ -33,23 +33,4 @@ public class City {
   public City() {
   }
 
-  public City(String city_name) {
-    this.name = city_name;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
 }

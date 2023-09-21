@@ -1,40 +1,32 @@
 package spring.domain;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cities")
-public class City {
+@Table(name = "events")
+public class Event {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String name;
-  private String comment;
-  @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
-  List<Event> products;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "city_id")
+  private City city;
 
-
-  public String getComment() {
-    return comment;
+  public Event() {
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
-
-  public City() {
-  }
-
-  public City(String city_name) {
-    this.name = city_name;
+  public Event(String name, City city) {
+    this.name = name;
+    this.city = city;
   }
 
   public Integer getId() {
@@ -47,6 +39,14 @@ public class City {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public City getCity() {
+    return city;
+  }
+
+  public void setCity(City city) {
+    this.city = city;
   }
 
   public void setId(Integer id) {
