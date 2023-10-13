@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+  objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+  <changeSet id="1697181190400-1" author="stark (generated)">
+    <createTable tableName="cafe">
+      <column autoIncrement="true" name="cafe_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_cafe"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-2" author="stark (generated)">
+    <createTable tableName="ingredient">
+      <column autoIncrement="true" name="ingredient_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ingredient"/>
+      </column>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="pizza_size_id" type="INT"/>
+      <column name="description" type="VARCHAR(255)"/>
+      <column name="price" type="DOUBLE"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-3" author="stark (generated)">
+    <createTable tableName="order">
+      <column autoIncrement="true" name="order_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_order"/>
+      </column>
+      <column name="user_id" type="INT"/>
+      <column name="state" type="SMALLINT"/>
+      <column name="service" type="DOUBLE"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-4" author="stark (generated)">
+    <createTable tableName="order_pizza">
+      <column autoIncrement="true" name="order_pizza_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_orderpizza"/>
+      </column>
+      <column name="order_id" type="INT"/>
+      <column name="pizza_id" type="INT"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-5" author="stark (generated)">
+    <createTable tableName="pizza">
+      <column autoIncrement="true" name="pizza_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pizza"/>
+      </column>
+      <column name="pizza_base_id" type="INT"/>
+      <column name="price" type="DOUBLE"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-6" author="stark (generated)">
+    <createTable tableName="pizza_base">
+      <column autoIncrement="true" name="pizza_base_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pizzabase"/>
+      </column>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="pizza_size_id" type="INT"/>
+      <column name="description" type="VARCHAR(255)"/>
+      <column name="price" type="DOUBLE"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-7" author="stark (generated)">
+    <createTable tableName="pizza_ingredient">
+      <column autoIncrement="true" name="pizza_ingredient_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pizzaingredient"/>
+      </column>
+      <column name="pizza_id" type="INT"/>
+      <column name="ingredient_id" type="INT"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-8" author="stark (generated)">
+    <createTable tableName="pizza_size">
+      <column autoIncrement="true" name="pizza_size_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_pizzasize"/>
+      </column>
+      <column name="name" type="VARCHAR(255)"/>
+      <column name="size" type="DOUBLE">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-9" author="stark (generated)">
+    <createTable tableName="user">
+      <column autoIncrement="true" name="user_id" type="INT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user"/>
+      </column>
+      <column name="login" type="VARCHAR(255)"/>
+      <column name="password" type="VARCHAR(255)"/>
+      <column name="email" type="VARCHAR(255)"/>
+      <column name="phone" type="VARCHAR(255)"/>
+      <column name="address" type="VARCHAR(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet id="1697181190400-10" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="pizza_size_id" baseTableName="ingredient"
+      constraintName="FK_INGREDIENT_ON_PIZZA_SIZE" referencedColumnNames="pizza_size_id"
+      referencedTableName="pizza_size"/>
+  </changeSet>
+  <changeSet id="1697181190400-11" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_pizza"
+      constraintName="FK_ORDERPIZZA_ON_ORDER" referencedColumnNames="order_id"
+      referencedTableName="order"/>
+  </changeSet>
+  <changeSet id="1697181190400-12" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="pizza_id" baseTableName="order_pizza"
+      constraintName="FK_ORDERPIZZA_ON_PIZZA" referencedColumnNames="pizza_id"
+      referencedTableName="pizza"/>
+  </changeSet>
+  <changeSet id="1697181190400-13" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="order"
+      constraintName="FK_ORDER_ON_USER" referencedColumnNames="user_id" referencedTableName="user"/>
+  </changeSet>
+  <changeSet id="1697181190400-14" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="pizza_size_id" baseTableName="pizza_base"
+      constraintName="FK_PIZZABASE_ON_PIZZA_SIZE" referencedColumnNames="pizza_size_id"
+      referencedTableName="pizza_size"/>
+  </changeSet>
+  <changeSet id="1697181190400-15" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="ingredient_id" baseTableName="pizza_ingredient"
+      constraintName="FK_PIZZAINGREDIENT_ON_INGREDIENT" referencedColumnNames="ingredient_id"
+      referencedTableName="ingredient"/>
+  </changeSet>
+  <changeSet id="1697181190400-16" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="pizza_id" baseTableName="pizza_ingredient"
+      constraintName="FK_PIZZAINGREDIENT_ON_PIZZA" referencedColumnNames="pizza_id"
+      referencedTableName="pizza"/>
+  </changeSet>
+  <changeSet id="1697181190400-17" author="stark (generated)">
+    <addForeignKeyConstraint baseColumnNames="pizzaz_base_id" baseTableName="pizza"
+      constraintName="FK_PIZZA_ON_PIZZA_BASE" referencedColumnNames="pizza_base_id"
+      referencedTableName="pizza_base"/>
+  </changeSet>
+
+</databaseChangeLog>
